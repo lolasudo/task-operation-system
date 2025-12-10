@@ -1,0 +1,125 @@
+{
+  "info": {
+    "name": "Docker Camera Management API - Backend Tests",
+    "_postman_id": "11111111-2222-3333-4444-555555555555",
+    "description": "Базовый набор запросов для проверки реализации API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Servers",
+      "item": [
+        {
+          "name": "List servers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/servers?page=1&page_size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "servers"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create server",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Server 1\",\n  \"hostname\": \"test-server-1.local\",\n  \"ip_address\": \"10.0.0.10\",\n  \"location\": \"DC-1 / Floor 1 / Rack 1\",\n  \"docker_version\": \"24.0.0\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/servers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "servers"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cameras",
+      "item": [
+        {
+          "name": "List cameras",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cameras?page=1&page_size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cameras"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/v1"
+    },
+    {
+      "key": "token",
+      "value": "<paste-valid-jwt-here>"
+    }
+  ]
+}
